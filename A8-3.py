@@ -6,23 +6,29 @@ class Time:
         self.s = sec
 
     def sum(self, other):
-        result = {'hr': self.h + other.h, 'm': self.m + other.m, 's': self.s + other.s}
-        if result['s'] > 59:
-            result['m'] += 1
-            result['s'] -= 60
-        if result['m'] > 59:
-            result['hr'] += 1
-            result['m'] -= 60
+        result = Time(0, 0, 0)
+        result.h = self.h + other.h
+        result.m = self.m + other.m
+        result.s = self.s + other.s
+        if result.s > 59:
+            result.m += 1
+            result.s -= 60
+        if result.m > 59:
+            result.h += 1
+            result.m -= 60
         return result
 
     def minus(self, other):
-        result = {'hr': self.h - other.h, 'm': self.m - other.m, 's': self.s - other.s}
-        if result['s'] < 0:
-            result['m'] -= 1
-            result['s'] += 60
-        if result['m'] < 0:
-            result['hr'] -= 1
-            result['m'] += 60
+        result = Time(0, 0, 0)
+        result.h = self.h - other.h
+        result.m = self.m - other.m
+        result.s = self.s - other.s
+        if result.s < 0:
+            result.m -= 1
+            result.s += 60
+        if result.m < 0:
+            result.h -= 1
+            result.m += 60
         return result
 
     def sec2time(self):
@@ -41,6 +47,9 @@ class Time:
         result = self.h * 3600 + self.m * 60 + self.s
         return result
 
+    def show(self):
+        print(self.h, ':', self.m, ':', self.s)
+
 
 while True:
     print('1- addition two time')
@@ -55,28 +64,29 @@ while True:
         m = int(input("Enter a minute for time one: "))
         s = int(input("Enter a second for time one: "))
         a = Time(hr, m, s)
-        hr = int(input("Enter a hour for time one: "))
-        m = int(input("Enter a minute for time one: "))
-        s = int(input("Enter a second for time one: "))
+        hr = int(input("Enter a hour for time two: "))
+        m = int(input("Enter a minute for time two: "))
+        s = int(input("Enter a second for time two: "))
         b = Time(hr, m, s)
-        c = a.sum(b)
         print('the Addition of these two time is: ')
-        print(c['hr'], ':', c['m'], ':', c['s'])
+        a.sum(b).show()
+
     elif choice == 2:
         hr = int(input("Enter a hour for time one: "))
         m = int(input("Enter a minute for time one: "))
         s = int(input("Enter a second for time one: "))
         a = Time(hr, m, s)
-        hr = int(input("Enter a hour for time one: "))
-        m = int(input("Enter a minute for time one: "))
-        s = int(input("Enter a second for time one: "))
+        hr = int(input("Enter a hour for time two: "))
+        m = int(input("Enter a minute for time two: "))
+        s = int(input("Enter a second for time two: "))
         b = Time(hr, m, s)
-        c = a.minus(b)
         print('the minus of these two time is: ')
-        print(c['hr'], ':', c['m'], ':', c['s'])
+        a.minus(b).show()
+
     elif choice == 3:
         c = Time(0, 0, 0)
         a = c.sec2time()
+
     elif choice == 4:
         hr = int(input("Enter a hour: "))
         m = int(input("Enter a minute: "))
@@ -85,6 +95,7 @@ while True:
         c = a.time2sec()
         print('the second is: ')
         print(c)
+
     elif choice == 5:
         exit()
     else:

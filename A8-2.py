@@ -5,23 +5,35 @@ class ComplexNumber:
         self.i = rp
 
     def mul(self, other):
-        result = {'rp': self.r * other.r - self.i * other.i, 'ip': self.r * other.i + self.i * other.r}
+
+        result = ComplexNumber(0, 0)
+        result.r = self.r * other.r - self.i * other.i
+        result.i = self.r * other.i + self.i * other.r
 
         return result
 
     def sum(self, other):
-        result = {'rp': self.r + other.r, 'ip': self.i + other.i}
+
+        result = ComplexNumber(0, 0)
+        result.r = self.r + other.r
+        result.i = self.i + other.i
 
         return result
 
     def minus(self, other):
-        result = {'rp': self.r - other.r, 'ip': self.i - other.i}
+
+        result = ComplexNumber(0, 0)
+        result.r = self.r - other.r
+        result.i = self.i - other.i
 
         return result
 
     def div(self, other):
+
+        result = ComplexNumber(0, 0)
         a = other.r ** 2 + other.i ** 2
-        result = {'rp': (self.r * other.r + self.i * other.i) / a, 'ip': (self.i * other.r - self.r * other.i) / a}
+        result.r = (self.r * other.r + self.i * other.i) / a
+        result.i = (self.i * other.r - self.r * other.i) / a
 
         return result
 
@@ -44,22 +56,22 @@ while True:
     if choice == 1:
         c = a.mul(b)
         print('the multiplication of these two complex number is: ')
-        print(c['rp'], '+', c['ip'], 'i')
+        print(c.r, '+', c.i, 'i')
     elif choice == 2:
         c = a.sum(b)
         print('the Addition of these two complex number is: ')
-        print(c['rp'], '+', c['ip'], 'i')
+        print(c.r, '+', c.i, 'i')
     elif choice == 3:
         c = a.minus(b)
         print('the minus of these two complex number is: ')
-        if c['ip'] < 0:
-            print(c['rp'], c['ip'], 'i')
+        if c.i < 0:
+            print(c.r, c.i, 'i')
         else:
-            print(c['rp'], '+', c['ip'], 'i')
+            print(c.r, '+', c.i, 'i')
     elif choice == 4:
         c = a.div(b)
         print('the division  of these two complex number is: ')
-        print(c['rp'], '+', c['ip'], 'i')
+        print(c.r, '+', c.i, 'i')
     elif choice == 5:
         exit()
     else:
